@@ -47,11 +47,14 @@ int main(void)
     INIT_LIST_HEAD(&testlist);
 
     assert(list_empty(&testlist));
-
+    printf("Before:");
     for (i = 0; i < ARRAY_SIZE(values); i++) {
         item = (struct listitem *) malloc(sizeof(*item));
         assert(item);
         item->i = values[i];
+        if (i % 16 == 0)
+            printf("\n");
+        printf("%4d ", item->i);
         list_add_tail(&item->list, &testlist);
     }
 
@@ -61,8 +64,12 @@ int main(void)
     list_qsort(&testlist);
 
     i = 0;
+    printf("\n\nAfter:");
     list_for_each_entry_safe (item, is, &testlist, list) {
         assert(item->i == values[i]);
+        if (i % 16 == 0)
+            printf("\n");
+        printf("%4d ", item->i);
         list_del(&item->list);
         free(item);
         i++;

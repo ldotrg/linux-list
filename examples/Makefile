@@ -11,7 +11,7 @@ TOP_DIR=$(shell TOP_DIR=Unable_To_Find_Top_Dir; \
 				echo $$TOP_DIR)
 $(info TOP_DIR = $(TOP_DIR))
 
-BIN_IMAGE = quick-sort
+BIN_IMAGE = merge-sort
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 ROOT_DIR := $(patsubst %/examples/Makefile, %, $(MKFILE_PATH))
 
@@ -26,7 +26,7 @@ CFLAGS += -I./ \
 
 ##### C Source #####
 
-C_SOURCES += quick-sort.c
+C_SOURCES += merge-sort.c
 ##### OBJECTS #####
 OBJECTS += $(patsubst %.c, %.o, $(C_SOURCES))
 all: $(BIN_IMAGE) $(C_SOURCES)
